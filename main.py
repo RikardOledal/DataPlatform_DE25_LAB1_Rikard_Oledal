@@ -44,3 +44,15 @@ if __name__ == "__main__":
     price_analysis_df = price_analysis(validated_df)
     price_analysis_path = data_folder / "price_analysis.csv"
     price_analysis_df.to_csv(price_analysis_path, index=False)
+
+    excel_path = data_folder / "excel.xlsx"
+    # price_analysis_df.to_excel(excel_writer=excel_path, sheet_name="price_analysis", index=False)
+    # analytics_summary_df.to_excel(excel_writer=excel_path, sheet_name="analytics_summary", index=False)
+
+    
+    with pd.ExcelWriter(excel_path) as writer:
+        analytics_summary_df.to_excel(writer, sheet_name="Analytics_summary", index=False)
+        price_analysis_df.to_excel(writer, sheet_name="Price_analysis", index=False)
+        validated_df.to_excel(writer, sheet_name="Validated", index=False)
+        rejected_df.to_excel(writer, sheet_name="Rejected", index=False)
+        
