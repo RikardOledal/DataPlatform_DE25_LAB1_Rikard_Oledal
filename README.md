@@ -1,6 +1,14 @@
-# DataPlatform_DE25_LAB1_Rikard_Oledal
-Lab 1 in DataPlatform course at STI
-The task was to create 
+# Lab - Data Ingestion, manipulation & workflow
+In this Lab the task was to load a csv file into a Pandas DataFrame and clean the data. Then we would reject data that was impossible and flag data that was uncertain. Then we would export the data in csv format. The files we would get were
+- [analytics_summary.csv](./data/analytics_summary.csv)
+- [analytics_summary.csv](./data/price_analysis.csv)
+- [rejected_products.csv](./data/rejected_products.csv)
+
+Apart from these, I also created
+- [validated_products.csv](./data/validated_products.csv)
+
+Since I am something of an excel fan, I couldn't help but create an excel file that contained all these reports as
+- [finalreport.xlsx](./data/finalreport.xlsx)finalreport.xlsx
 
 Flagg
 tekniskt giltig

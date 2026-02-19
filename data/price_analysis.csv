@@ -1,0 +1,11 @@
+id,name,price,currency,created_at,status_code,status_reason,diff,diff_rank,highest_price
+SKU-1039,Coat,999999.0,SEK,2024-10-15,23,Flagged: Price over 10_000,999399.0,1.0,1.0
+SKU-1021,Ring,25000.0,SEK,2024-06-05,23,Flagged: Price over 10_000,24400.0,2.0,2.0
+SKU-1020,Watch,15000.0,SEK,2024-06-01,23,Flagged: Price over 10_000,14400.0,3.0,3.0
+SKU-1032,Suit,5000.0,SEK,2024-09-01,10,Validated,4400.0,4.0,4.0
+SKU-1040,Parka,4500.0,SEK,2024-11-01,10,Validated,3900.0,5.0,5.0
+SKU-1027,Winter Jacket,3500.0,SEK,2024-07-15,10,Validated,2900.0,6.0,6.0
+SKU-1016,Coat,2500.0,SEK,2024-05-01,10,Validated,1900.0,7.0,7.0
+SKU-1034,Blazer,2200.0,SEK,2024-09-10,10,Validated,1600.0,8.0,8.0
+SKU-1010,Boots,1500.0,SEK,2024-02-15,10,Validated,900.0,9.5,9.5
+SKU-1047,Heels,1500.0,SEK,2024-12-15,10,Validated,900.0,9.5,9.5

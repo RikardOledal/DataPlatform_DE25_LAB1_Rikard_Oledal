@@ -1,0 +1,47 @@
+id,name,price,currency,created_at,status_code,status_reason
+SKU-1001,Shoes,799.0,SEK,2024-01-10,10,Validated
+SKU-1002,Pants,520.0,SEK,2024-02-15,10,Validated
+SKU-1003,Shirts,450.0,SEK,,22,Flagged: Missing Create-date
+SKU-1009,Socks,99.0,SEK,2024-02-01,10,Validated
+SKU-1010,Boots,1500.0,SEK,2024-02-15,10,Validated
+SKU-1011,Scarf,200.0,SEK,2024-03-01,10,Validated
+SKU-1012,Belt,300.0,SEK,2024-03-10,10,Validated
+SKU-1013,Cap,75.0,SEK,2024-04-01,10,Validated
+SKU-1014,T-Shirt,0.0,SEK,2024-04-10,24,Flagged: Price under 6
+SKU-1016,Coat,2500.0,SEK,2024-05-01,10,Validated
+SKU-1017,Jeans,800.0,SEK,2024-05-05,10,Validated
+SKU-1018,Sneakers,1200.0,SEK,2024-05-10,10,Validated
+SKU-1019,Sandals,400.0,SEK,2024-05-15,10,Validated
+SKU-1020,Watch,15000.0,SEK,2024-06-01,23,Flagged: Price over 10_000
+SKU-1021,Ring,25000.0,SEK,2024-06-05,23,Flagged: Price over 10_000
+SKU-1022,Bracelet,500.0,SEK,2024-06-10,10,Validated
+SKU-1023,Necklace,650.0,SEK,2024-06-15,10,Validated
+SKU-1024,Sunglasses,900.0,SEK,2024-07-01,10,Validated
+SKU-1025,Backpack,1100.0,SEK,2024-07-05,10,Validated
+SKU-1026,Umbrella,300.0,SEK,2024-07-10,10,Validated
+SKU-1027,Winter Jacket,3500.0,SEK,2024-07-15,10,Validated
+SKU-1028,Shorts,450.0,SEK,2024-08-01,10,Validated
+SKU-1029,Skirt,500.0,SEK,2024-08-05,10,Validated
+SKU-1030,Gloves,200.0,SEK,2024-08-10,10,Validated
+SKU-1031,Mittens,220.0,SEK,2024-08-15,10,Validated
+SKU-1032,Suit,5000.0,SEK,2024-09-01,10,Validated
+SKU-1033,Tie,150.0,SEK,2024-09-05,10,Validated
+SKU-1034,Blazer,2200.0,SEK,2024-09-10,10,Validated
+SKU-1035,Polo,600.0,SEK,2024-09-15,10,Validated
+SKU-1036,Leggings,350.0,SEK,2024-10-01,10,Validated
+SKU-1037,Tracksuit,1200.0,SEK,2024-10-05,10,Validated
+SKU-1038,Swimsuit,700.0,SEK,2024-10-10,10,Validated
+SKU-1039,Coat,999999.0,SEK,2024-10-15,23,Flagged: Price over 10_000
+SKU-1040,Parka,4500.0,SEK,2024-11-01,10,Validated
+SKU-1041,Beanie,180.0,SEK,2024-11-05,10,Validated
+SKU-1042,Earmuffs,130.0,SEK,2024-11-10,10,Validated
+SKU-1044,Vest,800.0,SEK,2024-12-01,10,Validated
+SKU-1045,Loafers,1100.0,SEK,2024-12-05,10,Validated
+SKU-1046,Sneakers,1000.0,SEK,2024-12-10,10,Validated
+SKU-1047,Heels,1500.0,SEK,2024-12-15,10,Validated
+SKU-1048,Flipflops,100.0,SEK,2024-12-20,10,Validated
+SKU-1049,Robe,900.0,SEK,2024-12-25,10,Validated
+SKU-1050,Pyjamas,600.0,SEK,2025-01-01,10,Validated
+SKU-1051,Suspenders,250.0,SEK,2025-01-05,10,Validated
+SKU-1053,Cap,85.0,SEK,2025-01-15,10,Validated
+SKU-1054,,450.0,SEK,2025-02-01,21,Flagged: Missing name

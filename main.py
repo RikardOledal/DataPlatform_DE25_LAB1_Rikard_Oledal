@@ -47,6 +47,7 @@ if __name__ == "__main__":
     price_analysis_df = price_analysis(validated_df)
     price_analysis_df.to_csv(PRICE_ANALYS_PATH, index=False)
     
+    print("====LOAD finalreport.xlsx====")
     with pd.ExcelWriter(EXCEL_PATH) as writer:
         analytics_summary_df.to_excel(writer, sheet_name="Analytics_summary", index=False)
         price_analysis_df.to_excel(writer, sheet_name="Price_analysis", index=False)
