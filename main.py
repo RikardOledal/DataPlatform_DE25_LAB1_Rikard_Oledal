@@ -3,15 +3,21 @@ import pandas as pd
 from utils import cleaning, flagg, Evaluate, analytics_summary, price_analysis
 
 if __name__ == "__main__":
-    base_path = Path(__file__).parent
-    data_folder = base_path / "data"
-    importfile_path = data_folder / "Products_raw.csv"
+    #Datapaths
+    BASE_PATH = Path(__file__).parent
+    DATA_FOLDER = BASE_PATH / "data"
+    IMPORTFILE_PATH = DATA_FOLDER / "Products_raw.csv"
+    REJECTS_FILE_PATH = DATA_FOLDER / "rejected_products.csv"
+    VALIDATED_FILE_PATH = DATA_FOLDER / "validated_products.csv"
+    ANALYTICS_FILE_PATH = DATA_FOLDER / "analytics_summary.csv"
+    PRICE_ANALYS_PATH = DATA_FOLDER / "price_analysis.csv"
+    EXCEL_PATH = DATA_FOLDER / "finalreport.xlsx"
 
-    if importfile_path.exists():
-        products_raw_df = pd.read_csv(importfile_path, delimiter=";")
+    if IMPORTFILE_PATH.exists():
+        products_raw_df = pd.read_csv(IMPORTFILE_PATH, delimiter=";")
         print("====DATA EXTRACTED====")
     else:
-        print(f"Did not find file at: {importfile_path}")
+        print(f"Did not find file at: {IMPORTFILE_PATH}")
 
     print("====TRANSFORM DATA====")
 
@@ -27,30 +33,21 @@ if __name__ == "__main__":
     evaluate = Evaluate(flagged_df)
 
     rejected_df = evaluate.rejection()
-    rejects_file_path = data_folder / "rejected_products.csv"
-    rejected_df.to_csv(rejects_file_path, index=False)
+    rejected_df.to_csv(REJECTS_FILE_PATH, index=False)
 
     print("====LOAD validated_products.csv====")
     validated_df = evaluate.validation()
-    validated_file_path = data_folder / "validated_products.csv"
-    validated_df.to_csv(validated_file_path, index=False)
+    validated_df.to_csv(VALIDATED_FILE_PATH, index=False)
 
     print("====LOAD analytics_summary.csv====")
     analytics_summary_df = analytics_summary(validated_df, rejected_df)
-    analytics_file_path = data_folder / "analytics_summary.csv"
-    analytics_summary_df.to_csv(analytics_file_path, index=False)
+    analytics_summary_df.to_csv(ANALYTICS_FILE_PATH, index=False)
 
     print("====LOAD price analysis.csv====")
     price_analysis_df = price_analysis(validated_df)
-    price_analysis_path = data_folder / "price_analysis.csv"
-    price_analysis_df.to_csv(price_analysis_path, index=False)
-
-    excel_path = data_folder / "excel.xlsx"
-    # price_analysis_df.to_excel(excel_writer=excel_path, sheet_name="price_analysis", index=False)
-    # analytics_summary_df.to_excel(excel_writer=excel_path, sheet_name="analytics_summary", index=False)
-
+    price_analysis_df.to_csv(PRICE_ANALYS_PATH, index=False)
     
-    with pd.ExcelWriter(excel_path) as writer:
+    with pd.ExcelWriter(EXCEL_PATH) as writer:
         analytics_summary_df.to_excel(writer, sheet_name="Analytics_summary", index=False)
         price_analysis_df.to_excel(writer, sheet_name="Price_analysis", index=False)
         validated_df.to_excel(writer, sheet_name="Validated", index=False)
