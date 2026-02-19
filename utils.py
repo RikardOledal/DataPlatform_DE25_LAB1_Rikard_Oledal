@@ -63,6 +63,22 @@ def flagg(unflagged:pd.DataFrame) -> pd.DataFrame:
     return flagged
 
 class Evaluate():
+    """
+    Handles the evaluation of flagged product data by separating it into 
+    validated rows and rejected rows.
+
+    The class identifies rows that do not meet minimum data quality requirements 
+    and assigns specific status codes and descriptions for both approved 
+    and rejected data.
+
+    Attributes:
+        flaggdata (pd.DataFrame): The input DataFrame containing original data 
+            alongside boolean flag columns.
+        rejects_condition (pd.Series): A boolean mask defining rows to be rejected 
+            (missing ID, price, currency, or negative price).
+        cols_to_remove (list): A list of helper/flag columns to be dropped 
+            before returning the results.
+    """
     def __init__(self, flaggdata):
         self.flaggdata = flaggdata
         self.rejects_condition = (

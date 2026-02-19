@@ -1,7 +1,7 @@
 # Lab - Data Ingestion, manipulation & workflow
 In this Lab the task was to load a csv file into a Pandas DataFrame and clean the data. Then we would reject data that was impossible and flag data that was uncertain. Then we would export the data in csv format. The files we would get were
 - [analytics_summary.csv](./data/analytics_summary.csv)
-- [analytics_summary.csv](./data/price_analysis.csv)
+- [price_analysis.csv](./data/price_analysis.csv)
 - [rejected_products.csv](./data/rejected_products.csv)
 
 Apart from these, I also created
@@ -9,6 +9,29 @@ Apart from these, I also created
 
 Since I am something of an excel fan, I couldn't help but create an excel file that contained all these reports as
 - [finalreport.xlsx](./data/finalreport.xlsx)finalreport.xlsx
+
+## Installation
+1. Clone the repo
+    ```bash
+    git clone https://github.com/RikardOledal/DataPlatform_DE25_LAB1_Rikard_Oledal.git
+    ```
+
+2. Install dependencies:
+    With uv:
+    ```bash
+    uv sync
+    ```
+3. Remove created files:
+    ```bash
+    py restart.py
+    ```
+
+4. Run program:
+    ```bash
+    py main.py
+    ```
+## Transformation
+
 
 Flagg
 tekniskt giltig
