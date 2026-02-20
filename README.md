@@ -61,7 +61,7 @@ I kept these, but flagged them up to see if they were correct.
 - Too low price: I thought it was worth flagging up everything that has a price of 0-5 SEK to see if this is really true.
 - Too high price: I thought it was worth flagging up everything that has a price of 10,000 SEK or more to see if this is really true.
 
-I also made att codestucture
+I also made a codestucture to easyer sort out the data.
 | Code | Reason | Type |
 |:-------:|:-------:|--------|
 | 10 | Validated | OK |
