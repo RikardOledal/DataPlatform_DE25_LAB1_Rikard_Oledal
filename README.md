@@ -23,7 +23,7 @@ If you want to know more about the lab. Here is the PDF.
 ## Transformation
 Transformation is when we take the data and clean up obvious errors, reject what you can't use, and flag what we think we need more information about. Since all columns start as strings, we start with some string cleaning.
 
-### Sting cleaning
+### String cleaning
 String cleaning is good for replacing characters you know are wrong, such as / to - in dates or if you've slipped a kr into the price column. It's also just for handling whitespaces where you know they shouldn't be.
 
 I cleaned the data by
@@ -43,8 +43,8 @@ After that, I flag all the flaws.
 - Missing currency
 - Missing create_date
 - Negative price
-- To low price
-- To high price
+- Too low price
+- Too high price
 
 ### Flagging or Rejecting
 This was a difficult trade-off because I didn't have a Stakeholder to consult with. It meant that you still had to assume certain conditions. The idea is that anything that makes it impossible to use the data or identify it is rejected, while the rest is flagged as wanting clarification, but you can count on it.
@@ -58,8 +58,16 @@ I rejected these
 I kept these, but flagged them up to see if they were correct.
 - Missing name: As long as we have an id on the row, we should be able to get this out. It is not critical as most things will be calculated on price. However, it could be misleading if you want to know the average for e.g. a jacket.
 - Missing create_date: As long as we have an id on the row, we should be able to get this out. It is not critical as most things will be calculated on price. However, it could be misleading if you want to know the average for e.g. June.
-- To low price: I thought it was worth flagging up everything that has a price of 0-5 SEK to see if this is really true.
-- To high price: I thought it was worth flagging up everything that has a price of 10,000 SEK or more to see if this is really true.
+- Too low price: I thought it was worth flagging up everything that has a price of 0-5 SEK to see if this is really true.
+- Too high price: I thought it was worth flagging up everything that has a price of 10,000 SEK or more to see if this is really true.
+
+I also made att codestucture
+| Code | Reason | Type |
+|:-------:|:-------:|--------|
+| 10 | Validated | OK |
+| 21-24 | Warnings | Flagged |
+| 31-34 | Critical Errors | Rejected |
+
 
 ## The reports
 - [analytics_summary.csv](./img/analytics_summary.csv)
@@ -74,7 +82,12 @@ In this case, I used Rank to sort out relevant values. To calculate the most dev
 In the assignment we were only supposed to produce rejected_products.csv, but since I had validated as well and since I am a fan of Excel, I also made a validated_products.csv and an Excel that puts everything together into a file with a sheet for each csv.
 
 ## Work process
-I worked in a [Jupiter Notebook](.sandbox.ipynb) to test that everything works as it should. In this you can also see the flow and some comments about each part.
+This project follows the ETL (Extract, Transform, Load) workflow:
+- Extract: Loading raw data from CSV using Pandas.
+- Transform: String cleaning, type conversion, and flagging/rejecting data based on quality rules.
+- Load: Exporting processed data back to CSV and Excel formats.
+
+I worked in a [Jupyter Notebook](sandbox.ipynb) to test that everything works as it should. In this you can also see the flow and some comments about each part.
 Then I moved the code to main.py and saw that it worked there. To keep my code DRY, I used utils.py to hold my functions.
 I coded everything myself, but have had discussions in my study group with Anja Scherwall and Felix Kjellberg. I used [Pandas docs][1] for explanations of methods and functions. Google Gemini helped me with troubleshooting when I got stuck.
 
