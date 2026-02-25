@@ -52,7 +52,7 @@ def flagg(unflagged:pd.DataFrame) -> pd.DataFrame:
     unflagged["missing_id"] = unflagged["id"].isna()
     unflagged["missing_name"] = unflagged["name"].isna()
     unflagged["missing_price"] = unflagged["price"].isna()
-    unflagged["negative price"] = unflagged["price"] < 0
+    unflagged["negative_price"] = unflagged["price"] < 0
     unflagged["to_low_price"] = unflagged["price"].between(0,5)
     unflagged["to_high_price"] = unflagged["price"] >= 10000
     unflagged["missing_currency"] = unflagged["currency"].isna()
@@ -84,12 +84,12 @@ class Evaluate():
         self.rejects_condition = (
             (self.flaggdata["missing_id"] == True)|
             (self.flaggdata["missing_price"] == True)|
-            (self.flaggdata["negative price"] == True)|
+            (self.flaggdata["negative_price"] == True)|
             (self.flaggdata["missing_currency"] == True)
         )
         self.cols_to_remove = [
             "missing_id", "missing_name", "missing_price", 
-            "negative price", "to_low_price",
+            "negative_price", "to_low_price",
             "to_high_price", "missing_currency",
             "missing_create_date"
         ]
@@ -104,8 +104,8 @@ class Evaluate():
         rejected.loc[rejected["missing_id"] == True, "reject_code"] = "31"
         rejected.loc[rejected["missing_currency"] == True, "reject_reason"] = "Missing currency"
         rejected.loc[rejected["missing_currency"] == True, "reject_code"] = "32"
-        rejected.loc[rejected["negative price"] == True, "reject_reason"] = "Price is negative"
-        rejected.loc[rejected["negative price"] == True, "reject_code"] = "33"
+        rejected.loc[rejected["negative_price"] == True, "reject_reason"] = "Price is negative"
+        rejected.loc[rejected["negative_price"] == True, "reject_code"] = "33"
         rejected.loc[rejected["missing_price"] == True, "reject_reason"] = "Missing price"
         rejected.loc[rejected["missing_price"] == True, "reject_code"] = "34"
 
