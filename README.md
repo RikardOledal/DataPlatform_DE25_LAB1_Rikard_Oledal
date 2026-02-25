@@ -10,13 +10,7 @@ If you want to know more about the lab. Here is the PDF.
     git clone https://github.com/RikardOledal/DataPlatform_DE25_LAB1_Rikard_Oledal.git
     ```
 
-2. Install dependencies:
-    With uv:
-    ```bash
-    uv sync
-    ```
-
-3. Run program:
+2. Run program:
     ```bash
     uv run main.py
     ```
