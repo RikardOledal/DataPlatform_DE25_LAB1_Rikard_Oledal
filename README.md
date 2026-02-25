@@ -18,7 +18,7 @@ If you want to know more about the lab. Here is the PDF.
 
 3. Run program:
     ```bash
-    py main.py
+    uv run main.py
     ```
 ## Transformation
 Transformation is when we take the data and clean up obvious errors, reject what you can't use, and flag what we think we need more information about. Since all columns start as strings, we start with some string cleaning.
