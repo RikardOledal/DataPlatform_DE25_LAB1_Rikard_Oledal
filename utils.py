@@ -82,55 +82,60 @@ class Evaluate():
     def __init__(self, flaggdata):
         self.flaggdata = flaggdata
         self.rejects_condition = (
-            (self.flaggdata["missing_id"] == True)|
-            (self.flaggdata["missing_price"] == True)|
-            (self.flaggdata["negative_price"] == True)|
-            (self.flaggdata["missing_currency"] == True)
+            self.flaggdata["missing_id"]|
+            self.flaggdata["missing_price"]|
+            self.flaggdata["negative_price"]|
+            self.flaggdata["missing_currency"]
         )
-        self.cols_to_remove = [
-            "missing_id", "missing_name", "missing_price", 
-            "negative_price", "to_low_price",
-            "to_high_price", "missing_currency",
-            "missing_create_date"
-        ]
+
+
     
     def rejection(self) -> pd.DataFrame:
         rejected = self.flaggdata[self.rejects_condition].copy()
 
+        # Create reject_code and reject_reason 
         rejected["reject_code"] = ""
         rejected["reject_reason"] = ""
 
-        rejected.loc[rejected["missing_id"] == True, "reject_reason"] = "Missing ID"
-        rejected.loc[rejected["missing_id"] == True, "reject_code"] = "31"
-        rejected.loc[rejected["missing_currency"] == True, "reject_reason"] = "Missing currency"
-        rejected.loc[rejected["missing_currency"] == True, "reject_code"] = "32"
-        rejected.loc[rejected["negative_price"] == True, "reject_reason"] = "Price is negative"
-        rejected.loc[rejected["negative_price"] == True, "reject_code"] = "33"
-        rejected.loc[rejected["missing_price"] == True, "reject_reason"] = "Missing price"
-        rejected.loc[rejected["missing_price"] == True, "reject_code"] = "34"
+        # Sums all error-columns row by row
+        error_columns = ["missing_id", "negative_price", "missing_currency", "missing_price"]
+        rejected["error_count"] = rejected[error_columns].sum(axis=1)
 
-        rejected = rejected.drop(columns=self.cols_to_remove)
+        # Update reject_code and reject_reason  
+        rejected.loc[rejected["missing_id"], ["reject_code", "reject_reason"]] = ["31", "Missing ID"]
+        rejected.loc[rejected["missing_currency"], ["reject_code", "reject_reason"]] = ["32", "Missing currency"]
+        rejected.loc[rejected["negative_price"], ["reject_code", "reject_reason"]] = ["33", "Price is negative"]
+        rejected.loc[rejected["missing_price"], ["reject_code", "reject_reason"]] = ["34", "Missing price"]
+        rejected.loc[rejected["error_count"] > 1, ["reject_code", "reject_reason"]] = ["39", "Multiple reasons"]
 
+        # Remove Columns
+        cols_to_remove_rej = ["missing_name","to_low_price","to_high_price","missing_create_date","error_count"]
+        rejected = rejected.drop(columns=cols_to_remove_rej)
+                                                                                                                                                    
         return rejected
 
     def validation(self):
         validated = self.flaggdata[~self.rejects_condition].copy()
-
+        
         validated["status_code"] = "10"
         validated["status_reason"] = "Validated"
-    
-        validated.loc[validated["missing_name"] == True, "status_code"] = "21"
-        validated.loc[validated["missing_name"] == True, "status_reason"] = "Flagged: Missing name"
-        validated.loc[validated["missing_create_date"] == True, "status_code"] = "22"
-        validated.loc[validated["missing_create_date"] == True, "status_reason"] = "Flagged: Missing Create-date"
-        validated.loc[validated["to_high_price"] == True, "status_code"] = "23"
-        validated.loc[validated["to_high_price"] == True, "status_reason"] = "Flagged: Price over 10_000"
-        validated.loc[validated["to_low_price"] == True, "status_code"] = "24"
-        validated.loc[validated["to_low_price"] == True, "status_reason"] = "Flagged: Price under 6"
-    
-        validated = validated.drop(columns=self.cols_to_remove)
+
+        # Sums all error-columns row by row
+        error_columns = ["missing_name", "missing_create_date", "to_high_price", "to_low_price"]
+        validated["error_count"] = validated[error_columns].sum(axis=1)
+
+        validated.loc[validated["missing_name"], ["status_code", "status_reason"]] = ["21", "Flagged: Missing name"]
+        validated.loc[validated["missing_create_date"], ["status_code", "status_reason"]] = ["22", "Flagged: Missing Create-date"]
+        validated.loc[validated["to_high_price"], ["status_code", "status_reason"]] = ["23", "Flagged: Price over 10_000"]
+        validated.loc[validated["to_low_price"], ["status_code", "status_reason"]] = ["24", "Flagged: Price under 6"]
+        validated.loc[validated["error_count"] > 1, ["status_code", "status_reason"]] = ["29", "Multiple reasons"]
+
+        # Remove Columns 
+        cols_to_remove_flg = ["missing_id","missing_price", "negative_price","missing_currency","error_count"]
+        validated = validated.drop(columns=cols_to_remove_flg)
 
         return validated
+
 
 def analytics_summary(validdata: pd.DataFrame, rejectdata) -> pd.DataFrame:
     product_mean = validdata.query("status_code == '10'")["price"].mean().round(2)
